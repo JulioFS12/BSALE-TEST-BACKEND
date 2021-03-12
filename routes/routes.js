@@ -2,7 +2,7 @@
 
 const routes = ( app ) => {
 
-    console.log('routes working');
+    app.use('/products', require('../components/product/network'));
 
 }
 
