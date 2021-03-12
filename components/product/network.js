@@ -1,11 +1,6 @@
+const { getAllProducts } = require('./controller');
 const router = require('express').Router();
 
-router.get('/all', (req, res) => {
-
-  res.send({
-      msg: 'Working',
-  }) 
-   
-});
+router.get('/all', getAllProducts);
 
 module.exports = router;
