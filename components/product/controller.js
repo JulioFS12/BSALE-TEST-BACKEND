@@ -3,7 +3,10 @@ const pool = require('../../dbConnection');
 
 const getAllProducts = (req, res = response) => {
 
-    pool.query('SELECT p.id, p.name, p.url_image, p.price, p.discount, c.name AS category FROM product AS p INNER JOIN category AS c WHERE url_image IS NOT NULL', function (error, results, fields) {
+    const limit = req.query.limit;
+    const set = req.query.set;
+
+    pool.query(`SELECT name, url_image, price FROM product LIMIT ${limit} OFFSET ${set}`, function (error, results, fields) {
         if (error) {
 
             console.log(error);
@@ -28,7 +31,7 @@ const getProductByName = (req, res = response) => {
     const name = req.query.name;
     console.log(name);
 
-    pool.query('SELECT * FROM product WHERE name LIKE ? AND url_image IS NOT NULL', `%${name}%` , function (error, results, fields) {
+    pool.query(`SELECT name, url_image, price FROM product WHERE name LIKE '%${name}%'`,function (error, results, fields) {
 
             if (error) {
 
@@ -54,7 +57,7 @@ const getProductByCategory = (req, res = response) => {
     const idCategory = req.query.idCategory;
     const name = req.query.name;
 
-    pool.query('SELECT p.id, p.name, p.url_image, p.price, p.discount, c.name AS category FROM product AS p INNER JOIN category AS c ON p.category = c.id WHERE p.category = ? AND url_image IS NOT NULL AND p.name LIKE ?', [idCategory,`%${name}%`], function (error, results, fields) {
+    pool.query(`SELECT p.name, p.url_image, p.price FROM product AS p INNER JOIN category AS c ON p.category = c.id WHERE p.category = ${idCategory} AND p.name LIKE '%${name}%'`, function (error, results, fields) {
 
             if (error) {
 
