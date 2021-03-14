@@ -54,8 +54,9 @@ const getProductByName = (req, res = response) => {
 const getProductByCategory = (req, res = response) => {
 
     const idCategory = req.query.idCategory;
+    const name = req.query.name;
 
-    pool.query(`SELECT p.name, p.url_image, p.price FROM product AS p INNER JOIN category AS c ON p.category = c.id WHERE p.category = ${idCategory} AND p.name LIKE '%${name}%'`, function (error, results, fields) {
+    pool.query(`SELECT p.name, p.url_image, p.price FROM product AS p INNER JOIN category AS c ON p.category = c.id WHERE p.category = ${idCategory} AND p.name LIKE '%${name}%'`, function (error, results) {
 
             if (error) {
 
