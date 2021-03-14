@@ -6,7 +6,7 @@ const getAllProducts = (req, res = response) => {
     const limit = req.query.limit;
     const set = req.query.set;
 
-    pool.query(`SELECT name, url_image, price FROM product LIMIT ${limit} OFFSET ${set}`, function (error, results, fields) {
+    pool.query(`SELECT name, url_image, price FROM product WHERE url_image IS NOT NULL AND url_image != ''  LIMIT ${limit} OFFSET ${set};`, function (error, results, fields) {
         if (error) {
 
             console.log(error);
