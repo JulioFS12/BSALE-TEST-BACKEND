@@ -4,7 +4,7 @@ const pool = require('../../dbConnection');
 const getAllCategories = (req, res = response) => {
 
     pool.query('SELECT * FROM category', (error, results, fields) => {
-        
+        z
         if (error) {
 
             console.log(error);
