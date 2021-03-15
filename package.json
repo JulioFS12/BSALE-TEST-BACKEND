@@ -22,7 +22,6 @@
   "bugs": {
     "url": "https://github.com/JulioFS12/BSALE-TEST-BACKEND/issues"
   },
-  "homepage": "https://github.com/JulioFS12/BSALE-TEST-BACKEND#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
